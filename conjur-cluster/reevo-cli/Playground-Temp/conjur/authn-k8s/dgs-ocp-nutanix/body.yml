@@ -1,0 +1,40 @@
+# =================================================
+# == Enroll a new Kubernetes authentication service
+# =================================================
+# Runtime configuration variables required by the authenticator.
+# Variables prefixed with `kubernetes/*` are only required when
+# running outside of Kubernetes. Variables prefixed with `ca/*`
+# are always required.
+- !variable kubernetes/service-account-token
+- !variable kubernetes/ca-cert
+- !variable kubernetes/api-url
+- !variable ca/key
+- !variable ca/cert
+# This webservice represents the K8s authenticator
+- !webservice
+# The `apps` policy defines K8s resources that 
+# can be authenticated.
+- !policy
+  id: apps
+  body:
+  # All application roles that are run in K8s must have
+  # membership in the `apps` layer
+  - !layer
+  # `authenticated-resources` is an array of hosts that map to
+  # resources in K8s
+  - &authenticated-resources
+    # this host will authenticate with Conjur to fetch the Follower seed
+    - !host
+      id: seed-fetcher-app
+      annotations:
+        authn-k8s/namespace: cyberark-conjur
+        authn-k8s/service-account: conjur-follower
+        authn-k8s/authentication-container-name: configurator
+  - !grant
+    role: !layer
+    members: *authenticated-resources
+# Members of `apps` are allowed to authenticate
+- !permit
+  role: !layer apps
+  privilege: [ read, authenticate ]
+  resource: !webservice

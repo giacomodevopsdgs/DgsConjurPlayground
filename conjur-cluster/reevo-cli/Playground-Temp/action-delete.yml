@@ -1,0 +1,4 @@
+# conjur policy replace -f action-delete.yml -b eso
+
+#- !delete
+#  record: !host <host-name>

@@ -1,0 +1,12 @@
+# conjur policy update -f action-revoke.yml -b conjur
+
+#- !revoke
+#  role: !layer authn-k8s/follower-1/apps # Without "conjur/"
+#  member: !layer /environments/kubernetes/lab/projects/app-name
+
+
+# conjur policy update -f action-revoke.yml -b vault
+
+#- !revoke
+#  role: !group <LOB-NAME>/<SAFE-NAME>/delegation/consumers # Without "vault/"
+#  member: !host /<host-name>

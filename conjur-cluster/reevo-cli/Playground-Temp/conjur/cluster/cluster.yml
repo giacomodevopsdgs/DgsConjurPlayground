@@ -1,0 +1,17 @@
+- !policy
+  id: dgs-playground
+  owner: !group /admins
+  annotations:
+    ttl: 300
+  body:
+  - !layer
+  - &hosts
+    - !host
+      id: conjur-1-podman
+    - !host
+      id: conjur-2-podman
+    - !host
+      id: conjur-3-podman
+  - !grant
+    role: !layer
+    member: *hosts

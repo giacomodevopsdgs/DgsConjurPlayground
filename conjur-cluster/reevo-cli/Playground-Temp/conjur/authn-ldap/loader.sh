@@ -1,0 +1,1 @@
+conjur policy update -f conjur/authn-ldap/body.yml -b conjur/authn-ldap

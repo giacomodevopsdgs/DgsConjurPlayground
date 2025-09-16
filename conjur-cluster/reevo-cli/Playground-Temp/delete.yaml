@@ -1,0 +1,6 @@
+- !delete
+  record: !policy authn-k8s/follower-ocp-lfa-04
+- !delete
+  record: !variable conjur/authn-k8s/follower-ocp-lfa-04/kubernetes/ca-cert 
+- !delete
+  record: !variable conjur/authn-k8s/follower-ocp-lfa-04/kubernetes/service-account-token 

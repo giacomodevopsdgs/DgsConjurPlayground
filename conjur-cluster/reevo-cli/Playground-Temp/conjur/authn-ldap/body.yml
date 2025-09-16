@@ -1,0 +1,30 @@
+- !policy
+  id: bper-ldap
+  body:
+    - !host
+    - !webservice
+      owner: !host
+      annotations:
+        ldap-authn/base_dn: dc=dominiotest,dc=priv
+        ldap-authn/bind_dn: DOMINIOTEST\uconjur
+        ldap-authn/connect_type: tls
+        ldap-authn/host: dominiotest-a4.dominiotest.priv
+        ldap-authn/port: 636
+        ldap-authn/filter_template: (&(objectCategory=Person)(sAMAccountName=%s))
+    - !group clients
+    - !permit
+      role: !group clients
+      privilege: [ read, authenticate ]
+      resource: !webservice
+    - !variable
+      id: bind-password
+      owner: !host
+    - !variable
+      id: tls-ca-cert
+      owner: !host
+    - !variable
+      id: tls-cert
+      owner: !host
+
+# Test command:
+# ldapsearch -x -H ldaps://dominiotest-a3.dominiotest.priv -w $PW_LDAP "(&(objectCategory=Person)(sAMAccountName=cbustos))" -D "DOMINIOTEST\uconjur" -b "dc=dominiotest,dc=priv" 
