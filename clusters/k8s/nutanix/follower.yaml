@@ -1,0 +1,35 @@
+apiVersion: conjur.cyberark.com/v1
+kind: ConjurFollower
+metadata:
+  name: conjur-follower
+  namespace: cyberark-conjur
+  labels:
+    app: conjur-follower
+spec:
+  configFileFrom:
+    configMapKeyRef:
+      key: conjur.yml
+      name: conjur-config
+  imagePullPolicy: Always
+  images:
+    configurator: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-configurator:2.6.1-4-6bf6b76
+    conjur: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-conjur:2.6.1-4-6bf6b76
+    failoverRebaser: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-failover-rebaser:2.6.1-4-6bf6b76
+    info: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-info:2.6.1-4-6bf6b76
+    nginx: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-nginx:2.6.1-4-6bf6b76
+    postgres: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-postgres:2.6.1-4-6bf6b76
+    syslogNg: ghcr.io/giacomodevopsdgs/conjur-kubernetes-follower-syslog-ng:2.6.1-4-6bf6b76
+  master:
+    account: dgs-lab
+    audience: https://conjur-cluster-temp.lab/
+    authentication: authn-k8s
+    authenticatorID: dgs-k8s-nutanix 
+    authnLogin: conjur/authn-k8s/dgs-k8s-nutanix/apps/seed-fetcher-app 
+    caCertificateFrom:
+      configMapKeyRef:
+        key: conjur.pem
+        name: conjur-cert
+    hostname: conjur-cluster-temp.lab
+    replicationSet: full
+    strictFIPSMode: false
+  replicas: 1

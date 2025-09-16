@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conjur-config
+  namespace: cyberark-conjur
+data:
+  conjur.yml: |
+    # List of authenticators enabled for this node
+    authenticators:
+      - authn-k8s/follower-dgs-lab
+      - authn
+      - authn-k8s/dgs-k8s-nutanix
