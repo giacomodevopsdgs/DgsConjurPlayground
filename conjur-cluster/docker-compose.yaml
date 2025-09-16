@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  reevo-cli:
+    container_name: reevo-cli
+    image:  ghcr.io/giacomodevopsdgs/conjur-k8s-utility:2.0.0
+    env_file:
+      - ./secrets.env  
+    volumes:
+      - ./reevo-cli:/reevo-cli
+      # - ./config:/root/.kube/config               
+    stdin_open: true
+    tty: true
+    restart: "no" 
+    working_dir: /root
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    user: root  # so Jenkins can install plugins, etc.
+    ports:
+      - "8080:8080"   # UI
+      - "50000:50000" # Agent connections
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # if you want Jenkins to spin up Docker agents
+    environment:
+      JAVA_OPTS: "-Xmx1024m"
+    restart: unless-stopped
+
+volumes:
+  jenkins-data:
+    driver: local    
