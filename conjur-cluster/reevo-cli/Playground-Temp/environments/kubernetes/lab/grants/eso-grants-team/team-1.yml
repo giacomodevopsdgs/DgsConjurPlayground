@@ -1,0 +1,4 @@
+- !grant
+  role: !group LOB-PoC-x8/Applicazione_test/delegation/consumers
+  members:
+    - !host /eso/lab/team/team-1

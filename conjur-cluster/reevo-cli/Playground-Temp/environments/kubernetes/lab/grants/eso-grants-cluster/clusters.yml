@@ -1,0 +1,10 @@
+- !host external-secrets
+- !variable local-conjur-secret
+- !permit
+  role: !host external-secrets
+  privilege: [ read, execute ]
+  resource: !variable local-conjur-secret
+
+# Add clusters
+- !host lab/cluster/dgs-ocp-nutanix
+- !host lab/cluster/dgs-k8s-nutanix

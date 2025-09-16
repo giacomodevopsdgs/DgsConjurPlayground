@@ -1,0 +1,3 @@
+- !policy 
+  id: vault-demo
+  owner: !group run-admins

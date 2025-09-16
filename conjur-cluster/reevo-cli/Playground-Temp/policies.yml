@@ -1,0 +1,27 @@
+- !policy
+  id: conjur/cluster
+  owner: !group admins
+
+- !policy
+  id: eso
+  owner: !group run-admins
+
+- !policy
+  id: conjur
+  owner: !group run-admins
+
+- !policy
+  id: environments/kubernetes/lab
+  owner: !group run-admins
+
+- !policy
+  id: environments/kubernetes/lab/projects
+  owner: !group run-admins
+
+- !policy
+  id: environments/kubernetes/lab/grants
+  owner: !group run-admins
+
+- !policy
+  id: environments/service/lab
+  owner: !group run-admins

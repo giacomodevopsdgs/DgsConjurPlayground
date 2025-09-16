@@ -1,0 +1,3 @@
+#- !grant
+#  role: !group <LOB-USER>/<SAFE-NAME>/delegation/consumers
+#  member: !layer /environments/service/lab/<LAYER-NAME>

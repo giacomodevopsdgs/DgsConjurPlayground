@@ -1,0 +1,4 @@
+- !grant
+  role: !group LOB_DemoOCP1/testSafeName/delegation/consumers
+  members:
+    - !host /eso/lab/cluster/dgs-ocp-nutanix

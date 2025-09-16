@@ -1,0 +1,12 @@
+- !policy
+  id: demo-app
+  body:
+    - !layer
+    - &demo-app-host
+      - !host
+        id: conjur-demo-app
+        annotations:
+          authn-k8s/namespace: conjur-demo-app
+    - !grant
+      role: !layer
+      members: *demo-app-host

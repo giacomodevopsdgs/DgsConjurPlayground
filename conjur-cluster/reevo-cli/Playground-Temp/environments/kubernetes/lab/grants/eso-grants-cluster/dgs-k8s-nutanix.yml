@@ -1,0 +1,4 @@
+- !grant
+  role: !group LOB_DemoOCP1/JustATestSafe2/delegation/consumers
+  members:
+    - !host /eso/lab/cluster/dgs-k8s-nutanix

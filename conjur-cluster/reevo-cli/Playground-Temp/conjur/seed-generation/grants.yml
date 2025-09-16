@@ -1,0 +1,5 @@
+- !grant
+  role: !layer consumers
+  members:
+  - !host /conjur/authn-k8s/dgs-ocp-nutanix/apps/seed-fetcher-app
+  - !host /conjur/authn-k8s/dgs-k8s-nutanix/apps/seed-fetcher-app  

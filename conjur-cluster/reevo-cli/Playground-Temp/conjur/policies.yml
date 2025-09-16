@@ -1,0 +1,15 @@
+- !policy
+  id: cluster
+  owner: !group /admins
+
+- !policy
+  id: seed-generation
+  owner: !group /run-admins
+
+- !policy
+  id: authn-k8s
+  owner: !group /run-admins
+
+- !policy
+  id: authn-ldap
+  owner: !group /run-admins

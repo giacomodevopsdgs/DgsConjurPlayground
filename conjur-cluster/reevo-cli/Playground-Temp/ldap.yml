@@ -1,0 +1,25 @@
+# LDAP Group
+- !group
+  id: ldap-users
+
+- !grant
+  role: !group run-admins
+  members:
+    - !group ldap-users
+
+- !grant
+  role: !group conjur/authn-ldap/bper-ldap/clients
+  member:
+    - !group ldap-users
+
+#############################
+### LDAP Users and grants ###
+#############################
+# Users
+- !user u824136
+
+# Grants
+- !grant
+  role: !group ldap-users
+  member:
+    - !user u824136

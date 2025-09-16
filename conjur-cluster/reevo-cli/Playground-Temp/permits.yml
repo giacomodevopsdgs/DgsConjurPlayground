@@ -1,0 +1,24 @@
+- !permit
+  role: !group /admins
+  privileges: [ read, create, update ]
+  resource: !policy root
+
+- !permit
+  role: !group /run-admins
+  privileges: [ read, create, update ]
+  resource: !policy eso
+
+- !permit
+  role: !group /run-admins
+  privileges: [ read, create, update ]
+  resource: !policy conjur
+
+- !permit
+  role: !group /run-admins
+  privileges: [ read, create, update ]
+  resource: !policy environments/kubernetes/lab
+
+- !permit
+  role: !group /run-admins
+  privileges: [ read, create, update ]
+  resource: !policy environments/service/lab

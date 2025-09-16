@@ -1,0 +1,10 @@
+- !host external-secrets
+- !variable local-conjur-secret
+- !permit
+  role: !host external-secrets
+  privilege: [ read, execute ]
+  resource: !variable local-conjur-secret
+
+# Add teams
+- !host lab/team/team-1
+- !host lab/team/team-2

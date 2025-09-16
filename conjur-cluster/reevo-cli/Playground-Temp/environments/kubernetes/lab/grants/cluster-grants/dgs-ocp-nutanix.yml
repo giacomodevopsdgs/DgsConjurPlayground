@@ -1,0 +1,4 @@
+- !grant
+  role: !layer apps
+  members:
+    - !layer /environments/kubernetes/lab/projects/demo-app

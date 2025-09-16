@@ -1,0 +1,4 @@
+# - !grant
+#   role: !group LAB/Conjur_Lab_test/delegation/consumers
+#   members:
+#     - !layer /environments/kubernetes/lab/projects/demo-app

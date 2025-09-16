@@ -1,0 +1,7 @@
+- !policy
+  id: dgs-ocp-nutanix
+  owner: !group /run-admins
+
+- !policy
+  id: dgs-k8s-nutanix
+  owner: !group /run-admins

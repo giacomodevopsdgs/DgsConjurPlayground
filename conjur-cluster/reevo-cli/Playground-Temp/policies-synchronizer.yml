@@ -1,0 +1,12 @@
+# Uncomment & edit if synchronizer is enabled
+
+
+- !permit
+  role: !group /run-admins
+  privileges: [ read, create, update ]
+  resource: !policy  VAULTDemo
+ 
+- !grant
+  role: !policy VAULTDemo
+  members:
+  - !group run-admins

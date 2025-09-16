@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummy-db-client
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummy-db-client
+  template:
+    metadata:
+      labels:
+        app: dummy-db-client
+    spec:
+      containers:
+        - name: client
+          image: bitnami/postgresql:16
+          command: ["/bin/bash","-lc"]
+          args:
+            - |
+              echo "Looping SELECT now(); explicitly using env vars in connection string"
+              while true; do
+                psql "host=devsecops-demo-db.cylp24eqo9yt.eu-central-1.rds.amazonaws.com port=5432 dbname=postgres user=$user password=$password sslmode=$PGSSLMODE" \
+                  -tAc "SELECT now();" || echo "psql failed, retrying..."
+                sleep 10
+              done
+          envFrom:
+            - secretRef:
+                name: aws-test-be2-environment-ops
